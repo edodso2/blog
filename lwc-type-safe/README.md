@@ -10,7 +10,7 @@ category: "LWC"
 
 This article will demonstrate why using types in JavaScript can be helpful and provide a method to easily declare and use types in an SFDX LWC project. Types will provide features such as intellisense and IDE errors when defined types are not followed.
 
-> This guide assumes that you are using vscode for SFDX LWC development as recommended by SalesForce.
+> This guide assumes that you are using vscode for SFDX LWC development as recommended by Salesforce.
 
 We will be using JSDOC to add types to one of the examples in the lwc-recipes repository. 
 
