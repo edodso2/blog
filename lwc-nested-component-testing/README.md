@@ -1,3 +1,11 @@
+---
+path: "lwc-nested-component-testing"
+title: "Nested Component Unit Testing Lightning Web Components (LWC)"
+description: "Tips for unit testing nested LWC components such as mocking."
+date: "Dec 19, 2019"
+category: "LWC"
+---
+
 # Nested Component Unit Testing With LWC
 
 The purpose of unit testing is to ensure each **unit** of a software package works as designed. This makes test more readable and maintainable. However, this can easily be overlooked when testing nested components. Take the following component structure for example:
