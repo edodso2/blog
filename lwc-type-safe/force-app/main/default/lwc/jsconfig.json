@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "target": "es2015",
+        "baseUrl": ".",
+        "paths": {
+            "c/todoList": [
+                "todoList/todoList.js"
+            ],
+            "c/todoApp": [
+                "todoApp/todoApp.js"
+            ]
+        },
+        "checkJs": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "lwc-unit-test-structure",
+  "version": "1.0.0",
+  "description": "Opinionated structure for LWC unit tests that prioritizes simplicity and readability.",
+  "main": "index.js",
+  "scripts": {
+    "test": "lwc-jest",
+    "test:watch": "lwc-jest --watch",
+    "test:debug": "lwc-jest --debug",
+    "test:unit:coverage": "lwc-jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edodso2/lwc-unit-test-structure.git"
+  },
+  "keywords": [
+    "LWC",
+    "Salesforce",
+    "Lightning",
+    "Components",
+    "Jest",
+    "unit",
+    "test",
+    "tdd"
+  ],
+  "author": "Eric Dodson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edodso2/lwc-unit-test-structure/issues"
+  },
+  "homepage": "https://github.com/edodso2/lwc-unit-test-structure#readme",
+  "devDependencies": {
+    "@salesforce/lwc-jest": "^0.5.4",
+    "@tigerface/lwc-test-utils": "0.0.4"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "lwc-nested-component-testing",
+  "version": "1.0.0",
+  "description": "How to properly unit test nested LWC components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "lwc-jest",
+    "test:unit:watch": "lwc-jest --watch",
+    "test:unit:debug": "lwc-jest --debug"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^0.5.4"
+  }
+}
