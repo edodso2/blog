@@ -1,7 +1,7 @@
 ---
 path: "lwc-type-safe"
 title: "Type Safe Lightning Web Components (LWC)"
-description: "Add type safety to your Lightning Web Components."
+description: "Add type safety to your Lightning Web Components JavaScript with JSDOC."
 date: "Dec 22, 2019"
 category: "LWC"
 ---
