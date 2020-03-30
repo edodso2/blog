@@ -1,5 +1,5 @@
 ---
-path: "/blogs/lwc-unit-test-structure"
+path: "lwc-unit-test-structure"
 title: "LWC Unit Test Structure"
 description: "Drastically improve the readability and simplicity of LWC unit tests."
 date: "Dec 18, 2019"
