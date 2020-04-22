@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "target": "es2015",
+        "baseUrl": ".",
+        "paths": {
+            "c/todoForm": [
+                "todoForm/todoForm.js"
+            ],
+        },
+        "checkJs": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}
