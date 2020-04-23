@@ -20,7 +20,7 @@ We will be generating a test scaffold for the todoForm component. Where a user c
 <template>
   <form onSubmit={handleSubmit}>
     <lightning-input label="Todo Name:" type="text"></lightning-input>
-    <fancy-submit-button>Submit</fancy-submit-button>
+    <c-submit-button>Submit</c-submit-button>
   </form>
 </template>
 ```
