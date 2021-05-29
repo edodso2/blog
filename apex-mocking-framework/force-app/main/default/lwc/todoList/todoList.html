@@ -1,0 +1,11 @@
+<template>
+  <lightning-card title="Todo List" icon-name="custom:custom14">
+    <ul class="slds-m-around_medium">
+      <template for:each={todos} for:item="todo">
+        <li key={todo.Id}>
+          {todo.Name}
+        </li>
+      </template>
+    </ul>
+  </lightning-card>
+</template>
