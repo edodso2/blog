@@ -20,7 +20,7 @@ This app has an LWC component that shows a todo list to the user. The LWC compon
 
 For testing the TodoController something like the following would suffice:
 
-```
+```Java
 @isTest()
 public class TodoControllerIntegrationTest {
     public static String todo1_Name = 'Sort Laundry';
@@ -49,7 +49,7 @@ This is a very simple and effective test. Before the test method we insert a tod
 
 To write a proper unit test we need to only test the `TodoController`. This would require mocking the `TodoService`. Before we can actually mock the `TodoService` we need to decouple our code. Currently our `TodoController` looks like this:
 
-```
+```Java
 public with sharing class TodoController {
     @AuraEnabled
     public static List<Todo__c> getTodos() {
@@ -60,7 +60,7 @@ public with sharing class TodoController {
 
 And the TodoService method looks like this:
 
-```
+```Java
 public with sharing class TodoService {
     public static List<Todo__c> getTodos() {
         return [SELECT Id, Name FROM Todo__c];
@@ -70,7 +70,7 @@ public with sharing class TodoService {
 
 Static methods, for various reasons, are not easy to mock. So we will update the `getTodos` method in `TodoService` so that it is not static. We will also make the `TodoService` and `getTodos` method virtual so that can override the `getTodos` method later when writing our test mock.
 
-```
+```Java
 public virtual with sharing class TodoService {
     public virtual List<Todo__c> getTodos() {
         return [SELECT Id, Name FROM Todo__c];
@@ -82,7 +82,7 @@ Now we need to update our `TodoController` to use the new `getTodos` instance me
 
 First lets create the `Injector` class
 
-```
+```Java
 public virtual class Injector { 
     private static Injector injector;
 
@@ -114,7 +114,7 @@ The injector above also adds a `mockInjector` static variable. This allows us to
 
 Now lets update our `TodoController` to use the `Injector`
 
-```
+```Java
 public with sharing class TodoController {
     private final TodoService todoService;
 
@@ -133,7 +133,7 @@ public with sharing class TodoController {
 
 Now we are using Dependency Injection to get our `TodoService` instance! Lets make one more update to our Injector class to allow us to mock the `TodoService`:
 
-```
+```Java
 public with sharing class TodoController {
     private final TodoService todoService;
 
@@ -153,7 +153,7 @@ public with sharing class TodoController {
 
 Now, in our tets, we can replace our `Injector` with a mock Injector that can return a mock `TodoService`. Lets update are test from earlier to mock the `Injector` and `TodoService` by adding the below code to the top of our test file and removing the `@TestSetup` method.
 
-```
+```Java
 public static String todo1_Name = 'Sort Laundry';
 public static Todo__c todo1 = new Todo__c(Name=todo1_Name);
 public static List<Todo__c> mockTodoList = new List<Todo__c>();
@@ -177,7 +177,7 @@ private class MockInjector extends Injector {
 
 Above we have a mock `Injector` and mock `TodoService` that the injector returns. Our complete test class looks like this:
 
-```
+```Java
 @isTest()
 public class TodoControllerManualMockTest {
     public static String todo1_Name = 'Sort Laundry';
