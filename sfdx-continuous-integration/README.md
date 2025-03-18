@@ -40,7 +40,7 @@ First we need to add a secret to the github repository to give the GitHub CI wor
 
 3. Add the following contents to the `deploy-and-test.yml` file.
 
-```YML
+```yaml
 # Unique name for this workflow
 name: Run Unit Tests
 

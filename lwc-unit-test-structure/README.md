@@ -25,7 +25,7 @@ Below we will take a look at each on of these issues and propose a solution. By 
 As test files get more and more tests test setup code must be repeated in each test. A global function should be used for test setup so that the code does not clutter up each test.
 
 Below is a simple test for a component that contains a single button that, when clicked, will call a component function to dispatch an event.
-```JavaScript
+```javascript
 import { createElement } from 'lwc';
 import Event from 'c/event';
 
@@ -60,7 +60,7 @@ describe('c-event', () => {
 As you can see from the code above, this test needs to make sure that when the button is clicked our custom 'click' event is dispatched. So we need to setup a mock event listener. If more tests are added that also need the listener the listener setup can begin to clutter up our test file. Adding a test setup function can make adding tests in the future much easier and can decrease the clutter in our individual tests.
 
 After test setup function:
-```JavaScript
+```javascript
 import { createElement } from 'lwc';
 import Event from 'c/event';
 
@@ -106,7 +106,7 @@ All of the test setup code is abstracted out of the test. This may seem unnecess
 Triggering DOM events in each test can quickly clutter up our test file. Triggering a DOM event is often a multiline effort that can easily clutter up a test. The Simulate class from the [lwc-test-utils](https://github.com/edodso2/lwc-test-utils) repository can be used to trigger events in a declarative, clutter free and readable method.
 
 Here is a test for an input element that must update a tracked value:
-```JavaScript
+```javascript
 it('updates value when input value is changed', () => {
   const { inputEl, valueEl } = setupTest();
 
@@ -125,7 +125,7 @@ it('updates value when input value is changed', () => {
 ```
 
 Use Simulate to 'simulate' all the DOM events:
-```JavaScript
+```javascript
 it('updates value when input value is changed', () => {
   const { inputEl, valueEl } = setupTest();
 
@@ -145,7 +145,7 @@ it('updates value when input value is changed', () => {
 In LWC Jest tests it is common to wrap assertions in a promise. But this nested code can be ugly and hard to read. Its better to use a "flushPromises" function along with async/await. The flush promises function is available on the `TestUtils` object from lwc-test-utils.
 
 Use async/await instead of Promise's in our previous example:
-```JavaScript
+```javascript
 import { TestUtils, Simulate } from '@tigerface/lwc-test-utils';
 
 ...

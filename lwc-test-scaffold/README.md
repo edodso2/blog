@@ -16,7 +16,7 @@ In this blog post we will quickly demonstrate how to use LWC Test Scaffold.
 
 We will be generating a test scaffold for the todoForm component. Where a user can enter a name for there todo and submit the form. See the HTML here:
 
-```HTML
+```html
 <template>
   <form onSubmit={handleSubmit}>
     <lightning-input label="Todo Name:" type="text"></lightning-input>
@@ -27,7 +27,7 @@ We will be generating a test scaffold for the todoForm component. Where a user c
 
 Here is the JS:
 
-```JavaScript
+```javascript
 import { LightningElement } from 'lwc';
 
 export default class TodoForm extends LightningElement {
@@ -71,7 +71,7 @@ Fill out the CLI prompts as follows:
 After you complete all the prompts, if you are following along, you should see a test file generated at `force-app/main/default/lwc/todoForm/__tests__/`
 
 Here is the file:
-```JavaScript
+```javascript
 import { createElement } from "lwc";
 import { TestUtils, Simulate } from "@tigerface/lwc-test-utils";
 
@@ -133,7 +133,7 @@ describe("c-todo-form", () => {
 Not bad for starting off, no time spent writing a test file from scratch!
 
 Take note of line 24 in the test file 
-```JavaScript
+```javascript
 // set elem props
 element.prop = TEST;
 ```
@@ -141,7 +141,7 @@ element.prop = TEST;
 This is where you can set public API properties for the element. Either pass them in the setupTest function or hard code them for all the tests as a constant.
 
 LWC Test Scaffold isn't perfect though! For example if you need to get an array of elements you can manually change the child queries to something like:
-```JavaScript
+```javascript
 const lightningInputEls = element.shadowRoot.querySelectorAll("lightning-input");
 ```
 

@@ -12,7 +12,7 @@ In the previous blog post I outlined a pattern for unit testing `@AuraEnabled` a
 
 First, we will copy the `MockProvider` from the Salesforce [Build a Mocking Framework with the Stub API](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_stub_api.htm) article.
 
-```
+```java
 @isTest
 public class MockProvider implements System.StubProvider {
     
@@ -51,7 +51,7 @@ public class MockProvider implements System.StubProvider {
 
 Next, lets add a `createMock` method to the top of our `MockProvider` class. This will actually create the mock class.
 
-```
+```java
 public Object createMock(Type typeToMock) {
     // Invoke the stub API and pass it our mock provider to create a 
     // mock class of typeToMock.
@@ -63,7 +63,7 @@ public Object createMock(Type typeToMock) {
 
 Note the hardcoded logic at the bottom of the `MockProvider`.
 
-```
+```java
 // This is a very simple mock provider that returns a hard-coded value 
 // based on the return type of the invoked.
 if (returnType.getName() == 'String')
@@ -76,7 +76,7 @@ We need to provide a way to dynamically set the return type of a mock method cal
 
 Lets add a map to our `MockProvider` along with a constructor to initialize the map.
 
-```
+```java
 private Map<String, Object> mockReturnValues;
 
 public MockProvider() {
@@ -86,7 +86,7 @@ public MockProvider() {
 
 Before moving forward lets define the API for setting a return value for a mock call. 
 
-```
+```java
 // Init mock provider
 mock = new MockProvider();
 
@@ -101,7 +101,7 @@ The above API will suffice for creating mocks and dynamically setting mock retur
 
 Lets implement the `setMock` method along with a flag to determine if we are in 'setting mock value' mode. The `setMock` method is needed to tell the `MockProvider` that we are about to setup a mock return value. The `isSettingMockValue` flag is needed for our `MockProvider` to know if we are setting a mock value or if we should return a mock value.
 
-```
+```java
 Boolean isSettingMockValue;
 
 // Start recording mock values
@@ -131,7 +131,7 @@ If this is confusing note our API above for setting a mock return value `mock.se
 
 Note that our `MockProvider.handleMethodCall` function is called *before* our `mockReturnValue` function. This gives us an opportunity to perform some logic based on if the `isSettingMockValue` is true/false. Lets add that logic now in place of the hardcoded return logic at the bottom of the `handleMethodCall` function.
 
-```
+```java
 // Serialize the method call so that we have a string
 // that represents this specific method call.
 String serializedMethodCall = serializeMethodCall(stubbedMethodName, listOfArgs);
@@ -151,7 +151,7 @@ else {
 
 We also need the `serializeMethodCall` function:
 
-```
+```java
 // Generates a string that represents the signature of a mocked method call
 private String serializeMethodCall(String stubbedMethodName, List<Object> listOfArgs) {
     return stubbedMethodName + '(' + String.join(listOfArgs, ',') + ')';
@@ -160,7 +160,7 @@ private String serializeMethodCall(String stubbedMethodName, List<Object> listOf
 
 Now we can save the method call and its parameters in a string format *before* `mockReturnValue` is called. This way we can use the `serializedMethodCall` as the key in our map:
 
-```
+```java
 // Define a mock return value for a function call.
 // The serialized method call is recorded from the invocation
 // provided as the first parameter.
@@ -175,7 +175,7 @@ We also make sure to call `stopSettingMockValue()` so that the `MockProvider` wi
 
 The full `MockProvider`:
 
-```
+```java
 @isTest
 public class MockProvider implements System.StubProvider {
     private Map<String, Object> mockReturnValues;
@@ -268,7 +268,7 @@ public class MockProvider implements System.StubProvider {
 
 We can update the `TodoController` test in the previous blog post to use the new `MockProvider` class:
 
-```
+```java
 @isTest()
 public class TodoControllerTest {
     public static String todo1_Name = 'Sort Laundry';

@@ -26,7 +26,7 @@ Lets take a look at how we would go about adding the todo list to a page and how
 
 First, if we take a look at the todoList code we can see that there is a public api property that excepts a list of todos for the component to display
 
-```JavaScript
+```javascript
 @api
 get todos() {
     return this._todos;
@@ -39,7 +39,7 @@ set todos(value) {
 
 Lets create a parent component to render the todo list with some todos. Use the vscode SFDX plugin or the command line to generate a new lwc component called todoApp. The html of the TodoApp component will simply render the todo list and pass it some todos via its public api property.
 
-```HTML
+```html
 <template>
   <c-todo-list todos={todos}></c-todo-list>
 </template>
@@ -49,7 +49,7 @@ Now we need to define the todos array in the TodoApp component. But we do not kn
 
 We will make use of JSDoc comments to define our types since vscode will recognize JSDoc comments by default. At the top of the TodoList components JavaScript file lets define the Todo type.
 
-```JavaScript
+```javascript
 /**
  * A todo item
  * @typedef Todo
@@ -61,7 +61,7 @@ We will make use of JSDoc comments to define our types since vscode will recogni
 
 Now we can use this type on our public api property.
 
-```JavaScript
+```javascript
 /** @type {Todo[]} */
 @api
 get todos() {
@@ -75,7 +75,7 @@ set todos(value) {
 
 Now one last step to get our type system working! In the jsconfig.json file in the lwc folder add the "checkJs" key and set it to true. The updated file should look something like this:
 
-```JSON
+```json
 {
   "compilerOptions": {
     "experimentalDecorators": true,
@@ -105,7 +105,7 @@ Now one last step to get our type system working! In the jsconfig.json file in t
 
 If we go back to the TodoApp component JavaScript we can define our todos array using the Todo type:
 
-```JavaScript
+```javascript
 /**
  * @type {import('c/todoList').Todo[]}
  */

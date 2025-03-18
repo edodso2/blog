@@ -30,7 +30,7 @@ Notice that the parent does not display the label it only sets it on the child a
 Our unit tests should keep these responsibilities in mind and ensure that each components test only tests its corresponding responsibilities. First, lets write a test to ensure the parent is setting the the label on the child as a public API property:
 
 The Parent class:
-```JavaScript
+```javascript
 export default class Parent extends LightningElement {
   static ChildLabel = 'Click To Show A Greeting!'
 
@@ -44,7 +44,7 @@ export default class Parent extends LightningElement {
 ```
 
 A piece of the Parent test class:
-```JavaScript
+```javascript
 it('sets label on child via public API property', () => {
   // Create initial element
   const element = createElement('c-parent', {
@@ -64,7 +64,7 @@ it('sets label on child via public API property', () => {
 
 Notice that the child element is queried in order to check its public API property but, we are not accessing the child elements DOM. We are only ensuring that the passed label value was set on the child. Below is an example of the test that does not follow proper unit testing best practices:
 
-```JavaScript
+```javascript
 it('sets label on child via public API property', () => {
   // Create initial element
   const element = createElement('c-parent', {
@@ -89,7 +89,7 @@ In this test the parent is checking if the child rendered the label. It is the c
 
 The next responsibility of the parent is to display a greeting in its template when the child emits a "showgreeting" event. It just so happens that the child will emit this even when a button in its template is clicked; However, beware of using code like this in the parent elements test:
 
-```JavaScript
+```javascript
 // Get the child element button
 const childElemButton = childElem.shadowRoot.querySelector('button');
 
@@ -101,7 +101,7 @@ In the example above we are breaking the rules of unit testing again! It is the 
 
 A better test would look like this:
 
-```JavaScript
+```javascript
 it('displays a greeting from the showgreeting event ', () => {
   // Create initial element
   const element = createElement('c-parent', {
@@ -137,7 +137,7 @@ Although technically the child is still dispatching the event we are not testing
 
 The child component test is much more straightforward since it has no children:
 
-```JavaScript
+```javascript
 it('shows label based on public property', () => {
   // Create initial element
   const element = createElement('c-child', {
@@ -209,7 +209,7 @@ To add a mock for the child a new \_\_mocks\_\_ folder must be created:
 
 \_\_mocks\_\_/child.js contains the mocked element:
 
-```JavaScript
+```javascript
 import { LightningElement, api } from 'lwc';
 
 export default class Child extends LightningElement {
@@ -219,7 +219,7 @@ export default class Child extends LightningElement {
 
 Now the parent test can use the mock by adding this line to the top of the file:
 
-```JavaScript
+```javascript
 jest.mock('c/child');
 ```
 
