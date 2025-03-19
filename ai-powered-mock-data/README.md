@@ -18,6 +18,8 @@ Although it's a niche problem, I was curious to explore possible solutions. That
 
 Mock-rocket uses a strategic combination of faker.js and batch AI callouts to generate sets of fake values. After the initial processing, mock data can be generated at **Hyper Speed!**
 
+![mock-rocket.com](./mock-rocket.png)
+
 My goal was to investigate ways to use AI strategically. The current challenge we face in the industry is that AI, while incredibly powerful, is relatively expensive and slow compared to traditional code. For a chatbot, users might accept responses that take a few seconds, but for most applications, we need near-instant responses. This necessitates being strategic with our AI integrations.
 
 Some popular enterprise-grade patterns for optimizing AI in production environments include caching inference results, implementing batch processing pipelines, and leveraging offline data analytics. These approaches help mitigate latency issues while maintaining the benefits of AI-powered functionality.
